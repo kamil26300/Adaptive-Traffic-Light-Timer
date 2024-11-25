@@ -119,20 +119,20 @@ def gpio_init():
         GPIO.setup(pin, GPIO.OUT)
 
 # Custom LED control function
-def control_traffic_lights(current_green, current_yellow):
+def control_traffic_lights():
     # Reset all LEDs
     for pin in RED_PINS + GREEN_PINS + YELLOW_PINS:
         GPIO.output(pin, GPIO.LOW)
     
     # Set appropriate LEDs based on current signal state
-    if current_yellow:
-        GPIO.output(YELLOW_PINS[current_green], GPIO.HIGH)
+    if currentYellow:
+        GPIO.output(YELLOW_PINS[currentGreen], GPIO.HIGH)
     else:
-        GPIO.output(GREEN_PINS[current_green], GPIO.HIGH)
+        GPIO.output(GREEN_PINS[currentGreen], GPIO.HIGH)
     
     # Set other signals to red
     for i in range(noOfSignals):
-        if i != current_green:
+        if i != currentGreen:
             GPIO.output(RED_PINS[i], GPIO.HIGH)
 
 class TrafficSignal:
@@ -593,6 +593,7 @@ def repeat():
         signals[currentGreen].green > 0
     ):  # while the timer of current green signal is not zero
         printStatus()
+        control_traffic_lights()
         updateValues()
         if (
             signals[(currentGreen + 1) % (noOfSignals)].red == detectionTime
