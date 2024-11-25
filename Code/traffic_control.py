@@ -125,10 +125,11 @@ def control_traffic_lights():
         GPIO.output(pin, GPIO.LOW)
     
     # Set appropriate LEDs based on current signal state
-    if currentYellow:
-        GPIO.output(YELLOW_PINS[currentGreen], GPIO.HIGH)
-    else:
-        GPIO.output(GREEN_PINS[currentGreen], GPIO.HIGH)
+    if currentGreen:
+        if currentYellow == 0:
+            GPIO.output(GREEN_PINS[currentGreen], GPIO.HIGH)
+        else:
+            GPIO.output(YELLOW_PINS[currentYellow], GPIO.HIGH)
     
     # Set other signals to red
     for i in range(noOfSignals):
