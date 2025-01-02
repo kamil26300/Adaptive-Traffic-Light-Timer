@@ -77,7 +77,7 @@ Based on simulation runs of 300 seconds, the following metrics were observed:
 
 1. **Adaptive Control**
    - 30% reduction in average waiting time
-   - 25% increase in intersection throughput
+   - 37.5% increase in intersection throughput
    - Dynamic response to traffic patterns
 
 2. **Multi-Vehicle Support**
